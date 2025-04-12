@@ -1,5 +1,6 @@
 package dev.spaghett.pkddatacollector
 
+import dev.spaghett.pkddatacollector.roomblocks.RoomScanner
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.event.FMLInitializationEvent
 
@@ -18,5 +19,10 @@ class DataCollector {
 
     @Mod.EventHandler
     fun init(event: FMLInitializationEvent) {
+        // Initialization logic here
+        println("PkdDataCollector mod initialized.")
+
+        // Register stuff
+        RoomScanner()
     }
 }
