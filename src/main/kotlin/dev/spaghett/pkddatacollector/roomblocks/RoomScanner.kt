@@ -16,6 +16,8 @@ class RoomScanner :  Command("scanroom") {
     private val roomData = mutableMapOf<String, RoomData>()
     private val gson = GsonBuilder().setPrettyPrinting().create()
 
+    private val includeMeta = listOf("trapdoor", "stair", "ladder", "vine")
+
     init {
         register()
     }
@@ -46,7 +48,7 @@ class RoomScanner :  Command("scanroom") {
             return
         }
 
-        val startPos = Vec3(floor(mc.thePlayer.posX), floor(mc.thePlayer.posY), floor(mc.thePlayer.posZ) + 1.0)
+        val startPos = Vec3(floor(mc.thePlayer.posX), floor(mc.thePlayer.posY) - 1.0, floor(mc.thePlayer.posZ) + 1.0)
 
         val data = RoomData(
             name = name,
@@ -63,7 +65,14 @@ class RoomScanner :  Command("scanroom") {
                     val block = state.block
 
                     if (!block.isAir(mc.theWorld, pos) && block.registryName.split(":").last() != "standing_sign") {
-                        val nameOnly = block.registryName.split(":").last()
+                        var nameOnly = block.registryName.split(":").last()
+
+                        for (meta in includeMeta) {
+                            if (meta in nameOnly) {
+                                nameOnly = "$nameOnly:${state.block.getMetaFromState(state)}"
+                            }
+                        }
+
                         yMap[y] = nameOnly
                     }
                 }
