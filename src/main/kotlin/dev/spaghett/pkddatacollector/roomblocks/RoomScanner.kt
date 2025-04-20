@@ -16,7 +16,7 @@ class RoomScanner :  Command("scanroom") {
     private val roomData = mutableMapOf<String, RoomData>()
     private val gson = GsonBuilder().setPrettyPrinting().create()
 
-    private val includeMeta = listOf("trapdoor", "stair", "ladder", "vine")
+    private val includeMeta = listOf("trapdoor", "stair", "ladder", "vine", "slab")
 
     init {
         register()
