@@ -1,6 +1,7 @@
 package dev.spaghett.pkddatacollector
 
 import dev.spaghett.pkddatacollector.roomblocks.RoomScanner
+import dev.spaghett.pkddatacollector.roomblocks.StartRoomScanner
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.event.FMLInitializationEvent
 
@@ -24,5 +25,6 @@ class DataCollector {
 
         // Register stuff
         RoomScanner()
+        StartRoomScanner()
     }
 }
