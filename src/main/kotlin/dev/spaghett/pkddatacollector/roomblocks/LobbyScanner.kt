@@ -35,8 +35,8 @@ class LobbyScanner : Command("scanlobby") {
             columns = mutableMapOf()
         )
 
-        for (x in -12..12) {
-            for (z in -12..12) {
+        for (x in -13..13) {
+            for (z in -13..13) {
                 val columnKey = "${x},${z}"
                 val yMap = mutableMapOf<Int, String>()
 
@@ -47,13 +47,7 @@ class LobbyScanner : Command("scanlobby") {
 
                     if (!block.isAir(mc.theWorld, pos)) {
                         var blockName = block.registryName.split(":").last()
-
-                        for (meta in includeMeta) {
-                            if (meta in blockName) {
-                                blockName = "$blockName:${state.block.getMetaFromState(state)}"
-                            }
-                        }
-
+                        blockName = "$blockName:${state.block.getMetaFromState(state)}"
                         yMap[y] = blockName
                     }
                 }
